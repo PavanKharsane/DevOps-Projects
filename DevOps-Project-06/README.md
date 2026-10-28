@@ -8,6 +8,31 @@ A comprehensive end-to-end CI/CD pipeline leveraging **Terraform**, **Ansible**,
 
 ## 🧩 Pipeline Architecture Overview
 
+## Local Multibranch Pipeline
+
+The repository includes a Windows-compatible Multibranch Pipeline in
+[`Jenkinsfile`](./Jenkinsfile). Configure Jenkins with a GitHub Branch Source
+Multibranch Pipeline job so pull requests run validation, tests, quality and
+security checks, while `main` can deploy to the local Docker Desktop
+Kubernetes cluster.
+
+Configure these Jenkins global tools:
+
+- JDK tool named `jdk8`
+- Maven tool named `maven-3.9`
+- SonarQube installation named `local-sonarqube`
+
+Add these Secret Text credentials before enabling the deployment stage:
+
+- `app-consumer-key`
+- `app-consumer-secret`
+- `app-access-token`
+- `app-access-token-secret`
+
+Rotate the credentials previously present in `deployment.yaml`; they must not
+be reused. The checked-in `runtime-secret.example.yaml` is only a placeholder
+and must not be applied with its example values.
+
 > Below is a step-by-step implementation breakdown of the complete DevOps CI/CD process.
 
 <details>
